@@ -64,6 +64,9 @@ export default class ShowCard extends React.Component{
             picUrl = item.urls.full;
         } else if(item.hasOwnProperty("url")){
             picUrl = item.url;
+            numLikes = item.likes;
+            numCollects = item.collects;
+            wid = item._id
         } 
         console.log("hello"+picUrl)
         

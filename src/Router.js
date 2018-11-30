@@ -2,7 +2,7 @@
 // import { BrowserRouter, Route, Switch } from "react-router-dom"
 // import { IndexPage } from "./page";
 import Login from "./page/login";
-// // import Register from "./page/register";
+import Register from "./page/register";
 
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
@@ -15,6 +15,7 @@ export class MainRouter extends React.Component {
                 <Switch>
                     <Route exact path={'/'} component={Login}/>
                     <Route exact path={"/index"} component={IndexPage} />
+                    <Route exact path={"/register"} component={Register} />
                 </Switch>
             </HashRouter>
         );
