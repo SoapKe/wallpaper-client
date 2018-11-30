@@ -3,7 +3,7 @@ import React from "react";
 // import ShowCard from "../component/Card";
 import {Link, Route, Switch, Redirect, NavLink, HashRouter} from "react-router-dom";
 // import Uploads from "./upload";
-// import Likes from "./likes";
+import Likes from "./likes";
 // import Collections from "./collection";
 import Home from "./home";
 // import Setting from "./setting";
@@ -58,7 +58,7 @@ export class IndexPage extends React.Component {
                         <Menu.Item key="1">
                             <Icon type="home" theme="outlined" />
                             <span className="nav-text">Home</span>
-                            <NavLink to="/"></NavLink>
+                            <NavLink to="/index"></NavLink>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Icon type="cloud-upload" theme="outlined" />
@@ -68,7 +68,7 @@ export class IndexPage extends React.Component {
                          <Menu.Item key="3">
                             <Icon type="heart" theme="outlined"/>
                             <span className="nav-text">Likes</span>
-                            <NavLink to="/likes"></NavLink>
+                            <NavLink to="/index/likes"></NavLink>
                         </Menu.Item>
                         <Menu.Item key="4">
                             <Icon type="folder" theme="outlined" />
@@ -93,7 +93,7 @@ export class IndexPage extends React.Component {
                             <Switch>
                                 <Route exact path="/index" component={Home}/>
                                 {/*<Route path="/upload" component={Uploads}/>*/}
-                                {/*<Route path="/likes" component={Likes}/>*/}
+                                <Route exact path="/index/likes" component={Likes}/>
                                 {/*<Route path="/collection" component={Collections}/>*/}
                                 {/*<Route path="/setting" component={Setting}/>*/}
                             </Switch>
