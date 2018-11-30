@@ -1,7 +1,7 @@
 // import React from "react";
 // import { BrowserRouter, Route, Switch } from "react-router-dom"
 // import { IndexPage } from "./page";
-// // import Login from "./page/login";
+import Login from "./page/login";
 // // import Register from "./page/register";
 
 import React from 'react';
@@ -13,7 +13,8 @@ export class MainRouter extends React.Component {
         return (
             <HashRouter>
                 <Switch>
-                    <Route exact path={'/'} component={IndexPage}/>
+                    <Route exact path={'/'} component={Login}/>
+                    <Route exact path={"/index"} component={IndexPage} />
                 </Switch>
             </HashRouter>
         );

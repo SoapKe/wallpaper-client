@@ -23,7 +23,7 @@ class Home extends React.Component {
         // })
         
     
-        axios.get("http://localhost:3000/wallpapers/index")
+        axios.get("http://localhost:8000/wallpapers/index")
             .then(response => {
                 console.log(response)
                 console.log(response.data)

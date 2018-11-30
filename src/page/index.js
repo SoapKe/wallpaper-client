@@ -91,7 +91,7 @@ export class IndexPage extends React.Component {
                     <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
                         <div style={{ padding: 24, background: '#fff', textAlign: 'center',minHeight: 660 }}>
                             <Switch>
-                                <Route exact path="/" component={Home}/>
+                                <Route exact path="/index" component={Home}/>
                                 {/*<Route path="/upload" component={Uploads}/>*/}
                                 {/*<Route path="/likes" component={Likes}/>*/}
                                 {/*<Route path="/collection" component={Collections}/>*/}
