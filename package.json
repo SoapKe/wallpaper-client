@@ -20,7 +20,8 @@
     "build": "react-app-rewired build",
     "test": "mocha",
     "eject": "react-scripts eject",
-    "estart": "electron ."
+    "estart": "electron .",
+    "eslint": "eslint *js "
   },
   "eslintConfig": {
     "extends": "react-app"
