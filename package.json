@@ -9,6 +9,7 @@
     "electron": "^3.0.10",
     "jsdom": "^13.0.0",
     "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",

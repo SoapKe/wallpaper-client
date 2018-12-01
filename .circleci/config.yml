@@ -33,23 +33,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-    #   - run:
-    #       name: "JavaScript Linter"
-    #       command: yarn lint -- --format junit -o reports/junit/js-lint-results.xml
-
-    #   - run:
-    #       name: "JavaScript Test Suite"
-    #       environment:
-    #         JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
-    #       command: yarn test -- --ci --testResultsProcessor="jest-junit"
-    #   - store_test_results:
-    #       path: /test
-    #   - store_artifacts:
-    #       path: reports/junit
-    #   run tests!
-      # - run: yarn install
-      # - run: yarn test
-
+      # eslint for style checking and code smells detection
       - run:
           command: |
             mkdir -p ~/reports
@@ -58,4 +42,15 @@ jobs:
       - store_test_results:
           path: ~/reports
       - store_artifacts:
-          path: ~/reports 
+          path: ~/reports
+
+      # mocha unit test
+      - run:
+          command: yarn test --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: ~/reports/mocha-unit_test-results.xml
+          when: always
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports
