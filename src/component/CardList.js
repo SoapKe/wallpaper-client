@@ -11,7 +11,7 @@ const CardList = ({pics}) =>{
         dataSource={pics}
         renderItem={(item,i)=>(
             <List.Item>
-                <ShowCard key={i} item={item}/>
+                <ShowCard id={i} key = {i} item={item}/>
             </List.Item>
         )}        
         />
