@@ -4,7 +4,7 @@ import React from "react";
 import {Link, Route, Switch, Redirect, NavLink, HashRouter} from "react-router-dom";
 // import Uploads from "./upload";
 import Likes from "./likes";
-// import Collections from "./collection";
+import Collections from "./collection";
 import Home from "./home";
 // import Setting from "./setting";
 // import Login from "./login";
@@ -73,7 +73,7 @@ export class IndexPage extends React.Component {
                         <Menu.Item key="4">
                             <Icon type="folder" theme="outlined" />
                             <span className="nav-text">Collection</span>
-                            <NavLink to="/collection"></NavLink>
+                            <NavLink to="/index/collection"></NavLink>
                         </Menu.Item>
                         <Menu.Item key="5">
                             <Icon type="setting" theme="outlined" />
@@ -93,8 +93,8 @@ export class IndexPage extends React.Component {
                             <Switch>
                                 <Route exact path="/index" component={Home}/>
                                 {/*<Route path="/upload" component={Uploads}/>*/}
-                                <Route exact path="/index/likes" component={Likes}/>
-                                {/*<Route path="/collection" component={Collections}/>*/}
+                                <Route path="/index/likes" component={Likes}/>
+                                <Route path="/index/collection" component={Collections}/>
                                 {/*<Route path="/setting" component={Setting}/>*/}
                             </Switch>
                         </div>

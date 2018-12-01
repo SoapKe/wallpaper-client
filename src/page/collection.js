@@ -14,20 +14,21 @@ class Likes extends React.Component {
     }  
 
     componentDidMount(){
-        axios.get("http://localhost:8000/wallpapers/likes")
-            .then(response => {
-                this.setState({
-                    posts: response.data
-                })      
-            })  
-            .catch(error => {
-                    console.log(error);
-            });
+        axios.get("http://localhost:8000/wallpapers/collections")
+        .then(response => {
+            this.setState({
+                posts: response.data
+            })      
+        })  
+        .catch(error => {
+                console.log(error);
+        });
+    
     }
     render(){       
         return (
-            <div>
-                <CardList pics={this.state.posts} />
+            <div>      
+                <CardList pics={this.state.posts} />         
             </div>
         );
     }
