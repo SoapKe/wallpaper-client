@@ -51,7 +51,7 @@ export class IndexPage extends React.Component {
     render() {
         return (
             <HashRouter>
-            <Layout>
+            <Layout id="index-layout">
                 <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0  }} >
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">

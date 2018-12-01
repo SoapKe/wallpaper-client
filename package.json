@@ -7,16 +7,18 @@
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "electron": "^3.0.10",
+    "mocha": "^5.2.0",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "spectron": "^5.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "test": "mocha",
     "eject": "react-scripts eject",
     "estart": "electron ."
   },
