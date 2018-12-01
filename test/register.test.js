@@ -19,11 +19,7 @@ describe('Application launch', function() {
     });
 
     before(() => {
-
-
         app.start()
-
-
     });
 
     after(() => app.stop());
