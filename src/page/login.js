@@ -95,7 +95,7 @@ class NormalLoginForm extends React.Component {
                         </Button>
                     </div>
                     Or
-                    <NavLink to="/register"> register now!</NavLink>
+                    <NavLink to="/register" id="reg-link"> register now!</NavLink>
 
                 </FormItem>
             </Form>

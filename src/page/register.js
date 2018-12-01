@@ -72,7 +72,7 @@ class RegistrationForm extends React.Component {
         });
       }
       else{
-        alert(err.message);
+        console.log(err.message);
       }
     });
   };
@@ -130,7 +130,7 @@ class RegistrationForm extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleRegister} style={{ width: '60%', marginLeft: '18%', marginTop: '20%', marginBottom: '20%'}}>
+      <Form id="reg-form" onSubmit={this.handleRegister} style={{ width: '60%', marginLeft: '18%', marginTop: '20%', marginBottom: '20%'}}>
         <FormItem
           {...formItemLayout}
           label="E-mail"
@@ -174,15 +174,15 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
        
-        <FormItem {...tailFormItemLayout}>
+        {/* <FormItem {...tailFormItemLayout}>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
           })(
             <Checkbox>I have read the <a href="">agreement</a></Checkbox>
           )}
-        </FormItem>
+        </FormItem> */}
         <FormItem {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">Register</Button>
+          <Button id="reg-btn" type="primary" htmlType="submit">Register</Button>
           <NavLink to="/login"> Go back to login!</NavLink>
         </FormItem>
         
