@@ -2,7 +2,7 @@ import { Layout, Menu, Input, Icon } from 'antd';
 import React from "react";
 // import ShowCard from "../component/Card";
 import {Link, Route, Switch, Redirect, NavLink, HashRouter} from "react-router-dom";
-// import Uploads from "./upload";
+import Uploads from "./upload";
 import Likes from "./likes";
 import Collections from "./collection";
 import Home from "./home";
@@ -63,7 +63,7 @@ export class IndexPage extends React.Component {
                         <Menu.Item key="2">
                             <Icon type="cloud-upload" theme="outlined" />
                             <span className="nav-text">Upload</span>
-                            <NavLink to="/upload"></NavLink>
+                            <NavLink to="/index/upload"></NavLink>
                         </Menu.Item>
                          <Menu.Item key="3">
                             <Icon type="heart" theme="outlined"/>
@@ -92,7 +92,7 @@ export class IndexPage extends React.Component {
                         <div style={{ padding: 24, background: '#fff', textAlign: 'center',minHeight: 660 }}>
                             <Switch>
                                 <Route exact path="/index" component={Home}/>
-                                {/*<Route path="/upload" component={Uploads}/>*/}
+                                <Route path="/index/upload" component={Uploads}/>
                                 <Route path="/index/likes" component={Likes}/>
                                 <Route path="/index/collection" component={Collections}/>
                                 {/*<Route path="/setting" component={Setting}/>*/}
