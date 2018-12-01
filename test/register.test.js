@@ -18,7 +18,13 @@ describe('Application launch', function() {
         args: [baseDir],
     });
 
-    before(() => app.start());
+    before(() => {
+
+
+        app.start()
+
+
+    });
 
     after(() => app.stop());
 
