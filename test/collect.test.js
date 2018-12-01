@@ -13,7 +13,7 @@ const electronBinary = path.join(baseDir, 'node_modules', '.bin', 'electron');
 // utility functions
 const sleep = time => new Promise(r => setTimeout(r, time));
 
-describe('Like test launch', function() {
+describe('Collect test launch', function() {
     this.timeout(30000);
 
     const app = new Application({
@@ -54,15 +54,15 @@ describe('Like test launch', function() {
         await app.client.waitUntilWindowLoaded();
 
         const html1 = await app.client.getHTML('body');
-        dom1 = new jsdom(html1)
+        var dom1 = new jsdom(html1)
         var uid_pic = dom1.window.document.getElementById('pic_0').getAttribute("name")
-        await app.client.click("#like_0");
-        await app.client.click("#likes");
+        await app.client.click("#collect_0");
+        await app.client.click("#collects");
         await sleep(2000);
         await app.client.waitUntilWindowLoaded();
 
         const html2 = await app.client.getHTML('body');
-        dom2 = new jsdom(html2);
+        var dom2 = new jsdom(html2);
         var list = [];
         var i = 0;
         while(1){
@@ -81,4 +81,3 @@ describe('Like test launch', function() {
     });
 
 });
-

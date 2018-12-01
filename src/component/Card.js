@@ -137,7 +137,7 @@ export default class ShowCard extends React.Component{
                     cover={<img alt="example" src={picUrl} widht="300" height="180" />}
                     actions={
                         [<Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
-                            <Icon type="folder-add" onClick={()=>this.handleCollect(wid)}/>,
+                            <Icon type="folder-add" id = {"collect_"+ id} onClick={()=>this.handleCollect(wid)}/>,
                             <Icon type="setting" />]
                     }
                 >
