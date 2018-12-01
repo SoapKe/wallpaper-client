@@ -107,6 +107,7 @@ export default class ShowCard extends React.Component{
 
     render(){
         const { item } = this.props;
+        const { id } = this.props;
         console.log("item"+item)
         var picUrl;
         var numLikes;
@@ -125,17 +126,18 @@ export default class ShowCard extends React.Component{
             numLikes = item.likes;
             numCollects = item.collects;
             wid = item._id
+            
         }
         // console.log("hello"+picUrl)
 
         return (
-            <div>
+            <div id = {"pic_"+id} name = {wid}>
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt="example" src={picUrl} widht="300" height="180" />}
                     actions={
-                        [<Icon type="heart" onClick={()=>this.handleLike(wid)}/>,
-                            <Icon type="folder-add" onClick={()=>this.handleCollect(wid)}/>,
+                        [<Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
+                            <Icon type="folder-add" id = {"collect_"+ id} onClick={()=>this.handleCollect(wid)}/>,
                             <Icon type="setting" />]
                     }
                 >

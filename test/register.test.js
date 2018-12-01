@@ -10,7 +10,7 @@ const electronBinary = path.join(baseDir, 'node_modules', '.bin', 'electron');
 // utility functions
 const sleep = time => new Promise(r => setTimeout(r, time));
 
-describe('Application launch', function() {
+describe('Register test launch', function() {
     this.timeout(30000);
 
     const app = new Application({

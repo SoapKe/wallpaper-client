@@ -65,12 +65,12 @@ export class IndexPage extends React.Component {
                             <span className="nav-text">Upload</span>
                             <NavLink to="/index/upload"></NavLink>
                         </Menu.Item>
-                         <Menu.Item key="3">
+                         <Menu.Item key="3" id = "likes">
                             <Icon type="heart" theme="outlined"/>
-                            <span className="nav-text">Likes</span>
+                            <span  className="nav-text">Likes</span>
                             <NavLink to="/index/likes"></NavLink>
                         </Menu.Item>
-                        <Menu.Item key="4">
+                        <Menu.Item key="4" id = "collects">
                             <Icon type="folder" theme="outlined" />
                             <span className="nav-text">Collection</span>
                             <NavLink to="/index/collection"></NavLink>
