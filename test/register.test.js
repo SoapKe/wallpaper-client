@@ -27,42 +27,18 @@ describe('Application launch', function() {
         const count = await app.client.getWindowCount();
         assert.equal(count, 1);
     });
+    // it('Shows the login window', async () => {
+    //     await app.client.waitUntilWindowLoaded();
+    //     const count = await app.client.getWindowCount();
+    //     assert.equal(count, 1);
+    // });
 
-    it('Login Fail with invalid username', async () => {
-        // get login form
-        const loginFormTwo = await app.client.getHTML('#login-form');
-        assert.ok(loginFormTwo);
-
-        // fill out login form
-        await app.client.setValue('#userName', "yy@qq.com");
-        await app.client.setValue('#password', "111111");
-        await app.client.click('#login-btn');
+    it('Shows the login window', async () => {
         await app.client.waitUntilWindowLoaded();
-        await sleep(2000);
-
-
-        // check that index-layout is there
-        const login_btn = await app.client.getHTML('#login-btn');
-        assert.ok(login_btn);
+        const count = await app.client.getWindowCount();
+        assert.equal(count, 1);
     });
 
-    it('Login Fail with invalid password', async () => {
-        // get login form
-        const loginFormTwo = await app.client.getHTML('#login-form');
-        assert.ok(loginFormTwo);
-
-        // fill out login form
-        await app.client.setValue('#userName', "y@qq.com");
-        await app.client.setValue('#password', "1111111");
-        await app.client.click('#login-btn');
-        await app.client.waitUntilWindowLoaded();
-        await sleep(2000);
-
-
-        // check that index-layout is there
-        const login_btn = await app.client.getHTML('#login-btn');
-        assert.ok(login_btn);
-    });
 
     it('Login Success', async () => {
         // get login form
@@ -70,16 +46,137 @@ describe('Application launch', function() {
         assert.ok(loginFormTwo);
 
         // fill out login form
-        await app.client.setValue('#userName', "y@qq.com");
-        await app.client.setValue('#password', "111111");
-        await app.client.click('#login-btn');
+        //await app.client.setValue('#userName', "y@qq.com");
+        //await app.client.setValue('#password', "111111");
+        await app.client.click('#reg-link');
         await app.client.waitUntilWindowLoaded();
         await sleep(2000);
 
 
         // check that index-layout is there
-        const layout = await app.client.getHTML('#index-layout');
-        assert.ok(layout);
+        //const layout = await app.client.getHTML('#index-layout');
+        //assert.ok(layout);
     });
+
+    it('Register Fail with wrongly formatted email', async () => {
+        // get login form
+        const regFormTwo = await app.client.getHTML('#reg-form');
+        assert.ok(regFormTwo);
+
+        // fill out login form
+        await app.client.setValue('#email', "yy");
+        await app.client.setValue('#password', "111111");
+        await app.client.setValue('#confirm', "111111");
+        //await sleep(20000000);
+        await app.client.click('#reg-btn');
+        await app.client.waitUntilWindowLoaded();
+        // check that index-layout is there
+        const reg_btn = await app.client.getHTML('#reg-btn');
+        assert.ok(reg_btn);
+    });
+
+    it('Register Fail with inconsistant passwords', async () => {
+        // get login form
+        const regFormTwo = await app.client.getHTML('#reg-form');
+        assert.ok(regFormTwo);
+
+        // fill out login form
+        await app.client.setValue('#email', "yy@qq.com");
+        await app.client.setValue('#password', "111311");
+        await app.client.setValue('#confirm', "111111");
+        //await sleep(20000000);
+        await app.client.click('#reg-btn');
+        await app.client.waitUntilWindowLoaded();
+        // check that index-layout is there
+        const reg_btn = await app.client.getHTML('#reg-btn');
+        assert.ok(reg_btn);
+    });
+
+    it('Register Fail with registered email', async () => {
+        // get login form
+        const regFormTwo = await app.client.getHTML('#reg-form');
+        assert.ok(regFormTwo);
+
+        // fill out login form
+        await app.client.setValue('#email', "y@qq.com");
+        await app.client.setValue('#password', "111111");
+        await app.client.setValue('#confirm', "111111");
+        //await sleep(20000000);
+        await app.client.click('#reg-btn');
+        await app.client.waitUntilWindowLoaded();
+        // check that index-layout is there
+        const reg_btn = await app.client.getHTML('#reg-btn');
+        assert.ok(reg_btn);
+    });
+
+    it('Register Fail with too short password', async () => {
+        // get login form
+        const regFormTwo = await app.client.getHTML('#reg-form');
+        assert.ok(regFormTwo);
+
+        // fill out login form
+        await app.client.setValue('#email', "yy@qq.com");
+        await app.client.setValue('#password', "111");
+        await app.client.setValue('#confirm', "111");
+        //await sleep(20000000);
+        await app.client.click('#reg-btn');
+        await app.client.waitUntilWindowLoaded();
+        // check that index-layout is there
+        const reg_btn = await app.client.getHTML('#reg-btn');
+        assert.ok(reg_btn);
+    });
+
+    it('Register success', async () => {
+        // get login form
+        const regFormTwo = await app.client.getHTML('#reg-form');
+        assert.ok(regFormTwo);
+
+        // fill out login form
+        await app.client.setValue('#email', "yyy@qq.com");
+        await app.client.setValue('#password', "111111");
+        await app.client.setValue('#confirm', "111111");
+        //await sleep(20000000);
+        await app.client.click('#reg-btn');
+        await app.client.waitUntilWindowLoaded();
+        // check that index-layout is there
+        const reg_btn = await app.client.getHTML('#reg-btn');
+        assert.ok(reg_btn);
+    });
+
+    // it('Login Fail with invalid password', async () => {
+    //     // get login form
+    //     const loginFormTwo = await app.client.getHTML('#login-form');
+    //     assert.ok(loginFormTwo);
+
+    //     // fill out login form
+    //     await app.client.setValue('#userName', "y@qq.com");
+    //     await app.client.setValue('#password', "1111111");
+    //     await app.client.click('#login-btn');
+    //     await app.client.waitUntilWindowLoaded();
+    //     await sleep(2000);
+
+
+    //     // check that index-layout is there
+    //     const login_btn = await app.client.getHTML('#login-btn');
+    //     assert.ok(login_btn);
+    // });
+
+    // it('Login Success', async () => {
+    //     // get login form
+    //     const loginFormTwo = await app.client.getHTML('#login-form');
+    //     assert.ok(loginFormTwo);
+
+    //     // fill out login form
+    //     await app.client.setValue('#userName', "y@qq.com");
+    //     await app.client.setValue('#password', "111111");
+    //     await app.client.click('#login-btn');
+    //     await app.client.waitUntilWindowLoaded();
+    //     await sleep(2000);
+
+
+    //     // check that index-layout is there
+    //     const layout = await app.client.getHTML('#index-layout');
+    //     assert.ok(layout);
+    // });
 
 });
