@@ -10,6 +10,7 @@
     "jsdom": "^13.0.0",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
+    "mochawesome": "^3.1.1",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",
@@ -20,10 +21,10 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "mocha",
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=./report/,reportFilename=mocha_test_report",
     "eject": "react-scripts eject",
     "estart": "electron .",
-    "eslint": "eslint *js "
+    "eslint": "eslint *js --format html --output-file ./report/eslint.html"
   },
   "eslintConfig": {
     "extends": "react-app"
