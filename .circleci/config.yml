@@ -37,7 +37,7 @@ jobs:
       - run:
           command: |
             mkdir -p ~/reports
-            yarn eslint --format junit --output-file ~/reports/eslint.xml
+            yarn cieslint --format junit --output-file ~/reports/eslint.xml
           when: always
       - store_test_results:
           path: ~/reports
@@ -46,7 +46,7 @@ jobs:
 
       # mocha unit test
       - run:
-          command: yarn test --reporter mocha-junit-reporter
+          command: yarn citest --reporter mocha-junit-reporter
           environment:
             MOCHA_FILE: ~/reports/mocha-unit_test-results.xml
           when: always

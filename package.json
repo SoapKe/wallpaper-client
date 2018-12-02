@@ -22,9 +22,11 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "mocha --reporter mochawesome --reporter-options reportDir=./report/,reportFilename=mocha_test_report",
+    "citest": "mocha",
     "eject": "react-scripts eject",
     "estart": "electron .",
-    "eslint": "eslint *js --format html --output-file ./report/eslint.html"
+    "eslint": "eslint *js --format html --output-file ./report/eslint.html",
+    "cieslint": "eslint *js"
   },
   "eslintConfig": {
     "extends": "react-app"
