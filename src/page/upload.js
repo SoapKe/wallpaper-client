@@ -89,6 +89,7 @@ class Uploads extends React.Component {
             <div> 
                 <Upload
                     action={this.uploadImage}
+                    accept="image/*"
                     listType="picture-card"
                     fileList={fileList}
                     onPreview={this.handlePreview}
