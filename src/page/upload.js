@@ -42,7 +42,7 @@ class Uploads extends React.Component {
             url: 'http://localhost:8000/upload',
             method: 'post',
             data: {
-              image:  file.path
+              image:  file
             },
             transformRequest: [function (data) {
               // Do whatever you want to transform the data

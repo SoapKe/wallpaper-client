@@ -6,7 +6,7 @@ import Uploads from "./upload";
 import Likes from "./likes";
 import Collections from "./collection";
 import Home from "./home";
-// import Setting from "./setting";
+import Setting from "./setting";
 // import Login from "./login";
 // import Register from "./register";
 //
@@ -78,7 +78,7 @@ export class IndexPage extends React.Component {
                         <Menu.Item key="5">
                             <Icon type="setting" theme="outlined" />
                             <span className="nav-text">Setting</span>
-                            <NavLink to="/setting"></NavLink>
+                            <NavLink to="/index/setting"></NavLink>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -95,7 +95,7 @@ export class IndexPage extends React.Component {
                                 <Route path="/index/upload" component={Uploads}/>
                                 <Route path="/index/likes" component={Likes}/>
                                 <Route path="/index/collection" component={Collections}/>
-                                {/*<Route path="/setting" component={Setting}/>*/}
+                                <Route path="/index/setting" component={Setting}/>
                             </Switch>
                         </div>
                     </Content>

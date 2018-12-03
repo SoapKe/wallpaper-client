@@ -1,53 +1,13 @@
-// const { app, BrowserWindow } = require('electron');
-//
-// // 浏览器引用
-// let window;
-//
-// // 创建浏览器窗口函数
-// let createWindow = () => {
-//     // 创建浏览器窗口
-//     window = new BrowserWindow({
-//         width: 800,
-//         height: 600
-//     });
-//
-//     // 加载应用中的index.html文件
-//     window.loadFile('./build/index.html/');
-//
-//     // 当window被关闭时，除掉window的引用
-//     window.on('closed', () => {
-//         window = null;
-//     });
-// };
-//
-// // 当app准备就绪时候开启窗口
-// app.on('ready', createWindow);
-//
-// // 当全部窗口都被关闭之后推出
-// app.on('window-all-closed', () => {
-//     if (process.platform !== 'darwin') {
-//         app.quit();
-//     }
-// });
-//
-// // 在macos上，单击dock图标并且没有其他窗口打开的时候，重新创建一个窗口
-// app.on('activate', () => {
-//     if (window == null) {
-//         createWindow();
-//     }
-// });
 const electron = require('electron');
 const ipcMain = electron.ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
-// const { spawn } = require("child_process");
-// const firebase = require('firebase');
 const path = require('path');
 const fs = require('fs');
 const request = require("request");
 const url = require('url');
-const upload = require('./lib/upload_function.js');
+const AutoChanger = require('./lib/autoChanger.js');
 const { spawn } = require("child_process");
 
 
@@ -112,13 +72,9 @@ app.on('activate', () => {
     }
 });
 
-// ipcMain.on('upload-image', (event, image) => {
-//     upload(image,Uid);
-// })
-
 ipcMain.on('download-image', (event, filePath) => {
     return new Promise((resolve, reject) => {
-      const tempDir = path.join(__dirname, "../wallpaper-client");
+      const tempDir = path.join(__dirname, "../wallpaper-client/wallpaper");
       const tempFileName = `temp${Date.now()}.jpg`;
       const tempFilePath = path.join(tempDir, tempFileName);
       const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
@@ -131,9 +87,13 @@ ipcMain.on('download-image', (event, filePath) => {
         // Change desktop background using applescript
         const script = spawn("osascript", [
           "-e",
-          `tell application "Finder" to set desktop picture to POSIX file "${tempFilePath}"`
+           `tell application "Finder" to set desktop picture to POSIX file "${tempFilePath}"`
         ]);
         script.on("close", resolve);
       });
     })
-  })
+  });
+
+ipcMain.on('change_period', (event,fre,msr) =>{ 
+    AutoChanger("every "+fre+" "+msr);
+});
