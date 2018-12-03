@@ -44,6 +44,9 @@ jobs:
       - store_artifacts:
           path: ~/reports
 
+      # build
+      - run: yarn build
+
       # mocha unit test
       - run: mkdir -p ~/junit
       - run:
