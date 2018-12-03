@@ -45,12 +45,13 @@ jobs:
           path: ~/reports
 
       # mocha unit test
+      - run: mkdir -p ~/junit
       - run:
           command: yarn citest --reporter mocha-junit-reporter
           environment:
-            MOCHA_FILE: ~/reports/mocha-unit_test-results.xml
+            MOCHA_FILE: ~/junit/mocha-results.xml
           when: always
       - store_test_results:
-          path: ~/reports
+          path: ~/junit
       - store_artifacts:
-          path: ~/reports
+          path: ~/junit
