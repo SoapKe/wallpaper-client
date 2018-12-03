@@ -47,6 +47,7 @@ const path = require('path');
 const fs = require('fs');
 const request = require("request");
 const url = require('url');
+const upload = require('./lib/upload_function.js');
 
 
 let mainWindow;
@@ -109,3 +110,7 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+// ipcMain.on('upload-image', (event, image) => {
+//     upload(image,Uid);
+// })

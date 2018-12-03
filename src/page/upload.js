@@ -3,8 +3,8 @@ import { Upload, message, Button, Icon, Modal } from 'antd';
 import CardList from '../component/CardList';
 import axios from 'axios';
 
-// const electron = window.require('electron');
-// const ipcRenderer = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipcRenderer = electron.ipcRenderer;
 
 class Uploads extends React.Component {
     constructor(){
@@ -36,8 +36,32 @@ class Uploads extends React.Component {
 
     uploadImage = (file) => {
         // ipcRenderer.send('upload-image', file.path);
-        console.log(file.path);
+        // console.log(file.path);
         console.log(file)
+        axios({
+            url: 'http://localhost:8000/upload',
+            method: 'post',
+            data: {
+              image:  file.path
+            },
+            transformRequest: [function (data) {
+              // Do whatever you want to transform the data
+              let ret = '';
+              for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+              }
+              return ret
+            }],
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          })
+          .then(response => {   
+            this.props.history.push('/');
+          })  
+          .catch(error => {
+            console.log(error);
+          });
       };
 
     componentDidMount(){
