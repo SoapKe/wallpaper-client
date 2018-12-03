@@ -48,6 +48,7 @@ const fs = require('fs');
 const request = require("request");
 const url = require('url');
 const upload = require('./lib/upload_function.js');
+const { spawn } = require("child_process");
 
 
 let mainWindow;
@@ -114,3 +115,25 @@ app.on('activate', () => {
 // ipcMain.on('upload-image', (event, image) => {
 //     upload(image,Uid);
 // })
+
+ipcMain.on('download-image', (event, filePath) => {
+    return new Promise((resolve, reject) => {
+      const tempDir = path.join(__dirname, "../wallpaper-client");
+      const tempFileName = `temp${Date.now()}.jpg`;
+      const tempFilePath = path.join(tempDir, tempFileName);
+      const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
+      const getImageFile = request.get(filePath);
+  
+      getImageFile.pipe(writeFileTo);
+      getImageFile.on("error", reject);
+      getImageFile.on("complete", () => {
+        // Image has been saved to tempFilePath
+        // Change desktop background using applescript
+        const script = spawn("osascript", [
+          "-e",
+          `tell application "Finder" to set desktop picture to POSIX file "${tempFilePath}"`
+        ]);
+        script.on("close", resolve);
+      });
+    })
+  })

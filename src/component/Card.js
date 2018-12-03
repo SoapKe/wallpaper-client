@@ -2,9 +2,8 @@ import { Card, Icon } from 'antd';
 import React from 'react';
 import axios from 'axios';
 
-// const electron = window.require('electron');
-// const ipcRenderer = electron.ipcRenderer;
-// const download = require('../lib/download')
+const electron = window.require('electron');
+const ipcRenderer = electron.ipcRenderer;
 
 /*
 <Meta
@@ -138,8 +137,8 @@ export default class ShowCard extends React.Component{
                     actions={
                         [<Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
                             <Icon type="folder-add" id = {"collect_"+ id} onClick={()=>this.handleCollect(wid)}/>,
-                            <Icon type="setting" />]
-                    }
+                            <Icon type="setting" onClick={() => {ipcRenderer.send("download-image", picUrl)}}/>]
+                        }
                 >
                     <Meta
                         title={"Author:  "+author}
