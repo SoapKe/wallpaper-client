@@ -67,7 +67,6 @@ class Uploads extends React.Component {
                 console.log(error);
               });
           }
-
       };
 
     componentDidMount(){
