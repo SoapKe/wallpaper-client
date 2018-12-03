@@ -58,7 +58,7 @@
 //         }
 
 //         //此处的url应该是服务端提供的上传文件api 
-//         const url = 'http://localhost:3000/api/upload';
+//         const url = 'http://35.243.234.68:3000/api/upload';
 //         const form = new FormData();
 
 //         //此处的file字段由上传的api决定，可以是其它值
@@ -71,7 +71,7 @@
 //         //     console.log(res)
 //         // })
 //         axios({
-//             url: 'http://localhost:8000/register',
+//             url: 'http://35.243.234.68:8000/register',
 //             method: 'post',
 //             data: {
 //               email:  this.state.Email,

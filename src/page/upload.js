@@ -38,34 +38,40 @@ class Uploads extends React.Component {
         // ipcRenderer.send('upload-image', file.path);
         // console.log(file.path);
         console.log(file)
-        axios({
-            url: 'http://localhost:8000/upload',
-            method: 'post',
-            data: {
-              image:  file.path
-            },
-            transformRequest: [function (data) {
-              // Do whatever you want to transform the data
-              let ret = '';
-              for (let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-              }
-              return ret
-            }],
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          })
-          .then(response => {   
-            this.props.history.push('/');
-          })  
-          .catch(error => {
-            console.log(error);
-          });
+        var r = new FileReader();
+        r.readAsDataURL(file); //Base64
+        r.onload = function(){
+            console.log(r.result)
+            axios({
+                url: 'http://35.243.234.68:8000/upload',
+                method: 'post',
+                data: {
+                  image:  r.result
+                },
+                transformRequest: [function (data) {
+                  // Do whatever you want to transform the data
+                  let ret = '';
+                  for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                  }
+                  return ret
+                }],
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+              })
+              .then(response => {   
+                this.props.history.push('/');
+              })  
+              .catch(error => {
+                console.log(error);
+              });
+          }
+
       };
 
     componentDidMount(){
-        axios.get("http://localhost:8000/wallpapers/upload")
+        axios.get("http://35.243.234.68:8000/wallpapers/upload")
         .then(response => {
             console.log(response.data);
             this.setState({

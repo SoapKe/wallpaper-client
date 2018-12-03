@@ -39,7 +39,7 @@ export default class ShowCard extends React.Component{
 
     handleLike(wid){
         axios({
-            url: 'http://localhost:8000/addLike',
+            url: 'http://35.243.234.68:8000/addLike',
             method: 'post',
             data: {
                 wid:  wid
@@ -66,7 +66,7 @@ export default class ShowCard extends React.Component{
 
     handleCollect(wid){
         axios({
-            url: 'http://localhost:8000/addCollect',
+            url: 'http://35.243.234.68:8000/addCollect',
             method: 'post',
             data: {
                 wid:  wid

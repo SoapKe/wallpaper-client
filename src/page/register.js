@@ -46,7 +46,7 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         axios({
-          url: 'http://localhost:8000/register',
+          url: 'http://35.243.234.68:8000/register',
           method: 'post',
           data: {
             email:  this.state.Email,

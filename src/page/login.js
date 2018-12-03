@@ -33,7 +33,7 @@ class NormalLoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
-                    url: 'http://localhost:8000/login',
+                    url: 'http://35.243.234.68:8000/login',
                     method: 'post',
                     data: {
                         email:  this.state.Username,
