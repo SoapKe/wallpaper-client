@@ -49,13 +49,10 @@ jobs:
 #      - run: yarn build
 
       # mocha unit test
-      - run: mkdir -p ~/junit
       - run:
-          command: yarn citest --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/mocha-results.xml
+          command: yarn citest --reporter mocha-junit-reporter --reporter-options mochaFile=~/reports/mocha-results.xml
           when: always
       - store_test_results:
-          path: ~/junit
+          path: ~/reports
       - store_artifacts:
-          path: ~/junit
+          path: ~/reports
