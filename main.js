@@ -6,7 +6,7 @@ const Menu = electron.Menu;
 const path = require('path');
 const fs = require('fs');
 const request = require("request");
-const url = require('url');
+// const url = require('url');
 const AutoChanger = require('./lib/autoChanger.js');
 const { spawn } = require("child_process");
 
@@ -33,7 +33,7 @@ const mainMenuTemplate =  [
                 submenu:[
                     {
                         label: 'Toggle DevTools',
-                        accelerator:process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                        accelerator:process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
                         click(item, focusedWindow){
                             focusedWindow.toggleDevTools();
                         }
@@ -43,15 +43,9 @@ const mainMenuTemplate =  [
             },
             {
                 label: 'Quit',
-                accelerator:process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+                accelerator:process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click(){
                     app.quit();
-                }
-            },
-            {
-                label: 'AutoChanger',
-                click(){
-                    // AutoChanger();
                 }
             }
         ]
