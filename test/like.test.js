@@ -38,8 +38,8 @@ describe('Like test launch', function() {
         assert.ok(loginFormTwo);
 
         // fill out login form
-        await app.client.setValue('#userName', "tm111@qq.com");
-        await app.client.setValue('#password', "123456");
+        await app.client.setValue('#userName', "y@qq.com");
+        await app.client.setValue('#password', "111111");
         await app.client.click('#login-btn');
         await app.client.waitUntilWindowLoaded();
         await sleep(2000);

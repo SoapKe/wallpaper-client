@@ -2,6 +2,9 @@
   "name": "wallpaper-client",
   "version": "0.1.0",
   "private": true,
+  "nyc": {
+    "exclude": ["report", "lib", "coverage", "**/config-overrides.js"]
+  },
   "dependencies": {
     "antd": "^3.10.9",
     "axios": "^0.18.0",
@@ -14,6 +17,7 @@
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
     "mochawesome": "^3.1.1",
+    "nyc": "^13.1.0",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",
@@ -22,9 +26,10 @@
     "spectron": "^5.0.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rrewired start",
     "build": "react-app-rewired build",
-    "test": "mocha --reporter mochawesome --reporter-options reportDir=./report/,reportFilename=mocha_test_report",
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=./report/,reportFilename=mocha_test_report --exit",
+    "covertest": "nyc --reporter=text --reporter=html --all mocha --exit",
     "citest": "mocha",
     "eject": "react-scripts eject",
     "estart": "electron .",
