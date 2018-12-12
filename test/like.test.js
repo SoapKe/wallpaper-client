@@ -54,6 +54,7 @@ describe('Like test launch', function() {
         await app.client.waitUntilWindowLoaded();
 
         const html1 = await app.client.getHTML('body');
+        var dom1;
         dom1 = new jsdom(html1)
         var uid_pic = dom1.window.document.getElementById('pic_0').getAttribute("name")
         await app.client.click("#like_0");
@@ -62,6 +63,7 @@ describe('Like test launch', function() {
         await app.client.waitUntilWindowLoaded();
 
         const html2 = await app.client.getHTML('body');
+        var dom2;
         dom2 = new jsdom(html2);
         var list = [];
         var i = 0;
