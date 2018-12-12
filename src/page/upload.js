@@ -19,16 +19,16 @@ class Uploads extends React.Component {
         }
     }
 
-    handleCancel = () => this.setState({ previewVisible: false })
+    handleCancel = () => this.setState({ previewVisible: false });
 
     handlePreview = (file) => {
         this.setState({
         previewImage: file.url || file.thumbUrl,
         previewVisible: true,
         });
-    }
+    };
 
-    handleChange = ({ fileList }) => this.setState({ fileList })
+    handleChange = ({ fileList }) => this.setState({ fileList });
 
 
     uploadImage = (file) => {

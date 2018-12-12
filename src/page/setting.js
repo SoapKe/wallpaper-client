@@ -26,7 +26,7 @@ class Setting extends React.Component {
 
     setPeriod = () => {
         ipcRenderer.send('change_period', this.state.fre, this.state.msr);
-    }
+    };
 
 
     render(){

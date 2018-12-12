@@ -1,9 +1,10 @@
 import React from "react"
 import CardList from '../component/CardList'
 import axios from 'axios'
+import { Button, Radio, Icon } from 'antd';
 
-// const electron = window.require('electron');
-// const ipcRenderer = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipcRenderer = electron.ipcRenderer;
 
 class Likes extends React.Component {
     constructor(){
@@ -23,11 +24,18 @@ class Likes extends React.Component {
         .catch(error => {
                 console.log(error);
         });
-    
     }
+
+    handleDownload(){
+        var urls;
+        urls = this.state.posts.map((item) => item.url);
+        ipcRenderer.send('download_all', urls);
+    }
+
     render(){       
         return (
-            <div>      
+            <div>
+                <Button type="primary" icon="download" size="large" onClick={() => this.handleDownload()}>Download</Button>
                 <CardList pics={this.state.posts} />         
             </div>
         );
