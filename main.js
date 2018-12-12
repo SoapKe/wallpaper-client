@@ -95,19 +95,12 @@ ipcMain.on('change_period', (event,fre,msr) =>{
 });
 
 ipcMain.on('download_all', (event, urls) =>{
-    console.log(urls);
-    for(var i = 0; i < urls.length; i++){
-        // Download(urls[i]);
-        setTimeout(() => {
-            Download(urls[i])
-            console.log(urls[i])
-        }, 2000);
-    }
-    // urls.forEach((url) => {
-    //     setTimeout(() => {
-    //         Download(url)
-    //         console.log(url)
-    //     }, 5000);
-    //     // sleep(1000).then(Download(url));
-    // });
+    async function asyncForEach(array, callback) {
+        for (let index = 0; index < array.length; index++) {
+          await callback(array[index]);
+        }
+      }
+    asyncForEach(urls, async (url) => {
+        await Download(url);
+    })
 });
