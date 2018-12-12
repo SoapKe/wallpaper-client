@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const request = require("request");
 // const url = require('url');
-const AutoChanger = require('./lib/autoChanger.js');
+const AutoChanger = require('./src/lib/autoChanger.js');
 const { spawn } = require("child_process");
 
 

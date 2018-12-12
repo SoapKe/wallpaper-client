@@ -127,7 +127,6 @@ export default class ShowCard extends React.Component{
             wid = item._id
             
         }
-        // console.log("hello"+picUrl)
 
         return (
             <div id = {"pic_"+id} name = {wid}>

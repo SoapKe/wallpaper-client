@@ -31,6 +31,7 @@ export class IndexPage extends React.Component {
         collapsed: false,
     };
 
+
     onCollapse = (collapsed) => {
         console.log(collapsed);
         this.setState({ collapsed });
