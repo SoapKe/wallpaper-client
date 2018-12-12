@@ -3,7 +3,7 @@ const path = require('path')
 const later = require('later')
 const { spawn } = require("child_process")
 
-const tempDir = path.join(__dirname, "../wallpaper");
+const tempDir = path.join(__dirname, "../../wallpaper");
 let files = finder.in(tempDir).findFiles("*.<(jpg|jpeg|png|bmp|gif|tiff)>");
 
 

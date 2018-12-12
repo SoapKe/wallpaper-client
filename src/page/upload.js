@@ -3,9 +3,6 @@ import { Upload, message, Button, Icon, Modal } from 'antd';
 import CardList from '../component/CardList';
 import axios from 'axios';
 
-const electron = window.require('electron');
-const ipcRenderer = electron.ipcRenderer;
-
 class Uploads extends React.Component {
     constructor(){
         super();
@@ -60,9 +57,6 @@ class Uploads extends React.Component {
                   'Content-Type': 'application/x-www-form-urlencoded'
                 }
               })
-              .then(response => {   
-                this.props.history.push('/');
-              })  
               .catch(error => {
                 console.log(error);
               });
