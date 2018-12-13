@@ -2,6 +2,7 @@ import { Select,InputNumber,Button } from 'antd';
 import React from "react";
 
 const Option = Select.Option;
+
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
 
@@ -28,10 +29,22 @@ class Setting extends React.Component {
         ipcRenderer.send('change_period', this.state.fre, this.state.msr);
     };
 
+    selectFolder = (type) => {
+        ipcRenderer.send('set_folder', type);
+    };
 
     render(){
         return(
             <div style={{ marginTop: 150 }}>
+
+                <div>
+                    <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("download")}>Select Download Folder</Button>
+                </div>
+
+                <div>
+                    <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("autoChanger")}>Select Collection Folder</Button>
+                </div>
+
                 <h3> Set the frequency of wallpaper changing automatically:</h3>
                 <br/>
                 Every
