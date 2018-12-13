@@ -107,7 +107,9 @@ ipcMain.on('download_all', (event, urls) =>{
 
 ipcMain.on('set_folder', (event, type) => {
     const {dialog} = require('electron') 
-    dialog.showOpenDialog(function (fileNames) { 
+    dialog.showOpenDialog({
+        properties: ['openDirectory']
+    }, function (fileNames) {
        
        // fileNames is an array that contains all the selected 
        if(fileNames === undefined) { 
