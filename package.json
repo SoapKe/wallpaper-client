@@ -15,6 +15,7 @@
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "child_process": "^1.0.2",
+    "electron-store": "^2.0.0",
     "fs-finder": "^1.8.1",
     "jsdom": "^13.0.0",
     "later": "^1.2.0",

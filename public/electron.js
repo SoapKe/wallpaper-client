@@ -6,12 +6,11 @@ const Menu = electron.Menu;
 const path = require('path');
 const fs = require('fs');
 const request = require("request");
-// const url = require('url');
 const AutoChanger = require('../lib/autoChanger.js');
 const Download = require('../lib/download_collection');
 const { spawn } = require("child_process");
-
-const sleep = time => new Promise(r => setTimeout(r, time));
+const Store = require('electron-store');
+const store = new Store();
 
 let mainWindow;
 
@@ -71,7 +70,7 @@ app.on('activate', () => {
 ipcMain.on('download-image', (event, filePath) => {
     return new Promise((resolve, reject) => {
       // const tempDir = path.join(__dirname, "../wallpaper");
-      const tempDir = "/Users/xuke/Desktop"
+      const tempDir = store.get('download_folder')
       const tempFileName = `temp${Date.now()}.jpg`;
       const tempFilePath = path.join(tempDir, tempFileName);
       const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
@@ -105,3 +104,22 @@ ipcMain.on('download_all', (event, urls) =>{
         await Download(url);
     })
 });
+
+ipcMain.on('set_folder', (event, folderPath, type) => {
+    const {dialog} = require('electron') 
+    dialog.showOpenDialog(function (fileNames) { 
+       
+       // fileNames is an array that contains all the selected 
+       if(fileNames === undefined) { 
+          console.log("No file selected"); 
+       } else { 
+          console.log(fileNames[0]);
+          if(type === "download") {
+            store.set('download_folder', fileNames[0]);
+          } else {
+            store.set('autoChanger_folder', fileNames[0]);
+          }
+       } 
+    });
+
+})
