@@ -51,7 +51,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "main": "main.js",
+  "main": "public/electron.js",
   "homepage": ".",
   "DEV": true,
   "devDependencies": {
@@ -61,8 +61,12 @@
   "build": {
     "appId": "com.wallpaper.Electron",
     "mac": {
-      "category": "columbia.wallpaperAssistant.desktopApp.electronReact",
-      "icon": "release/icon.ico"
-    }
+      "category": "columbia.wallpaperAssistant.desktopApp.electronReact"
+    },
+    "files": [
+      "./build/**/*",
+      "./public/electron.js",
+      "./lib/*"
+    ]
   }
 }

@@ -7,8 +7,8 @@ const path = require('path');
 const fs = require('fs');
 const request = require("request");
 // const url = require('url');
-const AutoChanger = require('./src/lib/autoChanger.js');
-const Download = require('./src/lib/download_collection');
+const AutoChanger = require('../lib/autoChanger.js');
+const Download = require('../lib/download_collection');
 const { spawn } = require("child_process");
 
 const sleep = time => new Promise(r => setTimeout(r, time));
@@ -18,7 +18,7 @@ let mainWindow;
 function createWindow() {
     mainWindow = new BrowserWindow({width: 900, height: 680, webPreferences: { webSecurity: false}});
 
-    mainWindow.loadURL(`file://${path.join(__dirname, './build/index.html')}`);
+    mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`);
 
     mainWindow.on('closed', () => mainWindow = null);
 
@@ -70,7 +70,8 @@ app.on('activate', () => {
 
 ipcMain.on('download-image', (event, filePath) => {
     return new Promise((resolve, reject) => {
-      const tempDir = path.join(__dirname, "../wallpaper-client/wallpaper");
+      // const tempDir = path.join(__dirname, "../wallpaper");
+      const tempDir = "/Users/xuke/Desktop"
       const tempFileName = `temp${Date.now()}.jpg`;
       const tempFilePath = path.join(tempDir, tempFileName);
       const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
