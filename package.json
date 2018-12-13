@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "nyc": {
-    "exclude": ["report", "lib", "coverage", "**/config-overrides.js"]
+    "exclude": [
+      "report",
+      "lib",
+      "coverage",
+      "**/config-overrides.js"
+    ]
   },
   "dependencies": {
     "antd": "^3.10.9",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "child_process": "^1.0.2",
-    "electron": "^3.0.10",
     "fs-finder": "^1.8.1",
     "jsdom": "^13.0.0",
     "later": "^1.2.0",
@@ -29,6 +33,7 @@
   "scripts": {
     "start": "react-app-rrewired start",
     "build": "react-app-rewired build",
+    "dist": "electron-builder",
     "test": "mocha --reporter mochawesome --reporter-options reportDir=./report/,reportFilename=mocha_test_report --exit",
     "covertest": "nyc --reporter=text --reporter=html --all mocha --exit",
     "citest": "mocha",
@@ -48,5 +53,16 @@
   ],
   "main": "main.js",
   "homepage": ".",
-  "DEV": true
+  "DEV": true,
+  "devDependencies": {
+    "electron": "^3.0.11",
+    "electron-builder": "^20.38.3"
+  },
+  "build": {
+    "appId": "com.wallpaper.Electron",
+    "mac": {
+      "category": "columbia.wallpaperAssistant.desktopApp.electronReact",
+      "icon": "release/icon.ico"
+    }
+  }
 }
