@@ -70,8 +70,8 @@ app.on('activate', () => {
 
 ipcMain.on('download-image', (event, filePath) => {
     return new Promise((resolve, reject) => {
-      // const tempDir = path.join(__dirname, "../wallpaper");
-      const tempDir = "/Users/xuke/Desktop"
+      const tempDir = __dirname;
+      // const tempDir = "./";
       const tempFileName = `temp${Date.now()}.jpg`;
       const tempFilePath = path.join(tempDir, tempFileName);
       const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
