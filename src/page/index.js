@@ -46,7 +46,7 @@ export class IndexPage extends React.Component {
         return (
             <HashRouter>
             <Layout id="index-layout">
-                <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0  }} >
+                <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }} >
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1">
@@ -82,8 +82,8 @@ export class IndexPage extends React.Component {
                         <Search style={{ marginLeft: 10}} placeholder="want to find more?" onSearch={keyword => this.onSearch(keyword)} enterButton/>
                     </div>
                     </Header>
-                    <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-                        <div style={{ padding: 24, background: '#fff', textAlign: 'center',minHeight: 660 }}>
+                    <Content style={{ margin: '16px 8px 0', overflow: 'initial' }}>
+                        <div style={{ padding: 16, background: '#fff', textAlign: 'center', minHeight:'100vh' }}>
                             <Switch>
                                 <Route exact path="/index" component={Home}/>
                                 <Route path="/index/upload" component={Uploads}/>

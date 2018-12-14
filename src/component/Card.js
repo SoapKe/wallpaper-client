@@ -132,11 +132,12 @@ export default class ShowCard extends React.Component{
             <div id = {"pic_"+id} name = {wid}>
                 <Card
                     style={{ width: 300 }}
-                    cover={<img alt="example" src={picUrl} widht="300" height="180" />}
+                    cover={<img alt="example" src={picUrl} width="300" height="180" />}
                     actions={
-                        [<Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
+                        [   <Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
                             <Icon type="folder-add" id = {"collect_"+ id} onClick={()=>this.handleCollect(wid)}/>,
-                            <Icon type="setting" onClick={() => {ipcRenderer.send("download-image", picUrl)}}/>]
+                            <Icon type="setting" onClick={() => {ipcRenderer.send("download-image", picUrl)}}/>
+                        ]
                         }
                 >
                     <Meta

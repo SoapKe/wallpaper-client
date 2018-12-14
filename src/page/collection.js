@@ -1,7 +1,7 @@
 import React from "react"
 import CardList from '../component/CardList'
 import axios from 'axios'
-import { Button, Radio, Icon } from 'antd';
+import {Button, Divider} from 'antd';
 
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
@@ -36,6 +36,7 @@ class Likes extends React.Component {
         return (
             <div>
                 <Button type="primary" icon="download" size="large" onClick={() => this.handleDownload()}>Download</Button>
+                <Divider />
                 <CardList pics={this.state.posts} />         
             </div>
         );
