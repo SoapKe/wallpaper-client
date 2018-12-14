@@ -14,7 +14,7 @@ class Likes extends React.Component {
     }  
 
     componentDidMount(){
-        axios.get("http://35.243.234.68:8000/wallpapers/likes")
+        axios.get("http://localhost:8000/wallpapers/likes")
             .then(response => {
                 this.setState({
                     posts: response.data

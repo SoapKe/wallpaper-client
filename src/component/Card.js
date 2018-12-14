@@ -17,32 +17,35 @@ export default class ShowCard extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            color:"#000000"
-
+            color1:"#000000",
+            color2:"#000000"
         }
         //this.color = "#eb2f96";
     }
 
-    onChangeColor(color){
-        if(color === "#000000") {
-            this.setState({
-                color:"#eb2f96"
-            })
-        } else {
-            this.setState({
-                color:"#000000"
-            })
-        }
-
-        console.log("rrrr");
-    }
 
     handleLike(wid){
+        var action
+        if(this.state.color1 === "#000000") {
+            this.setState({
+                color1:"#eb2f96"
+            })
+            action = 1
+        } else if(this.state.color1 === "#eb2f96"){
+            this.setState({
+                color1:"#000000"
+            })
+            action = -1
+            console.log("wojianle!!!"+action)
+        } else{
+            return
+        }
         axios({
-            url: 'http://35.243.234.68:8000/addLike',
+            url: 'http://localhost:8000/addLike',
             method: 'post',
             data: {
-                wid:  wid
+                wid:  wid,
+                action: action 
             },
             transformRequest: [function (data) {
                 // Do whatever you want to transform the data
@@ -65,11 +68,27 @@ export default class ShowCard extends React.Component{
     }
 
     handleCollect(wid){
+        var action
+        if(this.state.color2 === "#000000") {
+            this.setState({
+                color2:"#eb2f96"
+            })
+            action = 1
+        } else if(this.state.color2 === "#eb2f96") {
+            this.setState({
+                color2:"#000000"
+            })
+            action = -1
+            console.log("wojianle!!!"+action)
+        } else{
+            return
+        }
         axios({
-            url: 'http://35.243.234.68:8000/addCollect',
+            url: 'http://localhost:8000/addCollect',
             method: 'post',
             data: {
-                wid:  wid
+                wid:  wid,
+                action: action
             },
             transformRequest: [function (data) {
                 // Do whatever you want to transform the data
@@ -92,6 +111,35 @@ export default class ShowCard extends React.Component{
     }
 
 
+    componentDidMount(){
+        const { item } = this.props;
+        if (item.hasOwnProperty("urls")){
+            this.setState({
+                color1:"#ffffff",
+                color2:"#ffffff"
+            })
+        } else if(item.hasOwnProperty("url")){
+            if(item.isLiked === true){
+                this.setState({
+                    color1:"#eb2f96"
+                })
+            } else{
+                this.setState({
+                    color1:"#000000"
+                })
+            }
+            if(item.isCollected === true){
+                this.setState({
+                    color2:"#eb2f96"
+                })
+            } else{
+                this.setState({
+                    color2:"#000000"
+                })
+            }
+        }
+
+    }
 
     // download = (url) => {
     //     const tempFileName = `temp${Date.now()}.jpg`;
@@ -113,19 +161,15 @@ export default class ShowCard extends React.Component{
         var author = "Jianing";
         var numCollects;
         var wid;
-        if (item.hasOwnProperty("_doc")){
-            picUrl = item._doc.url;
-            numLikes = item._doc.likes;
-            numCollects = item._doc.collects;
-            wid = item._doc._id
-        } else if (item.hasOwnProperty("urls")){
+        var isLiked;
+        
+       if (item.hasOwnProperty("urls")){
             picUrl = item.urls.full;
         } else if(item.hasOwnProperty("url")){
             picUrl = item.url;
             numLikes = item.likes;
             numCollects = item.collects;
-            wid = item._id
-            
+            wid = item._id;
         }
 
         return (
@@ -134,9 +178,9 @@ export default class ShowCard extends React.Component{
                     style={{ width: 300 }}
                     cover={<img alt="example" src={picUrl} widht="300" height="180" />}
                     actions={
-                        [<Icon type="heart" id = {"like_"+ id} onClick={()=>this.handleLike(wid)}/>,
-                            <Icon type="folder-add" id = {"collect_"+ id} onClick={()=>this.handleCollect(wid)}/>,
-                            <Icon type="setting" onClick={() => {ipcRenderer.send("download-image", picUrl)}}/>]
+                        [<Icon type="heart" id = {"like_"+ id} theme="twoTone" twoToneColor={this.state.color1} onClick={()=>{this.handleLike(wid)}}/>,
+                            <Icon type="folder-add" id = {"collect_"+ id} theme="twoTone" twoToneColor={this.state.color2} onClick={()=>this.handleCollect(wid)}/>,
+                            <Icon type="setting" theme="twoTone" twoToneColor="#000000" onClick={() => {ipcRenderer.send("download-image", picUrl)}}/>]
                         }
                 >
                     <Meta

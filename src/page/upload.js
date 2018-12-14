@@ -40,7 +40,7 @@ class Uploads extends React.Component {
         r.onload = function(){
             console.log(r.result)
             axios({
-                url: 'http://35.243.234.68:8000/upload',
+                url: 'http://localhost:8000/upload',
                 method: 'post',
                 data: {
                   image:  r.result
@@ -64,7 +64,7 @@ class Uploads extends React.Component {
       };
 
     componentDidMount(){
-        axios.get("http://35.243.234.68:8000/wallpapers/upload")
+        axios.get("http://localhost:8000/wallpapers/upload")
         .then(response => {
             console.log(response.data);
             this.setState({

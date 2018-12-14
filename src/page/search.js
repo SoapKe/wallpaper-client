@@ -21,7 +21,7 @@ class SearchResult extends React.Component {
             //TODO: Put it in environment vars.
             applicationId: "1eccca646ffdcffd33a902794c5086f1701713c20b2eb943a458880100bb677d",
             secret: "891c91a86a0842e6648925e8048cc35ede9986969db514e4e0ae6d8d811f1130",
-            callbackUrl: "http://35.243.234.68:8000/auth"
+            callbackUrl: "http://localhost:8000/auth"
         });
 
         console.log(this.props);
@@ -47,7 +47,7 @@ class SearchResult extends React.Component {
             //TODO: Put it in environment vars.
             applicationId: "1eccca646ffdcffd33a902794c5086f1701713c20b2eb943a458880100bb677d",
             secret: "891c91a86a0842e6648925e8048cc35ede9986969db514e4e0ae6d8d811f1130",
-            callbackUrl: "http://35.243.234.68:8000/auth"
+            callbackUrl: "http://localhost:8000/auth"
         });
 
         console.log(this.props);
