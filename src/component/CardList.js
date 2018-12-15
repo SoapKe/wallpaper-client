@@ -1,4 +1,4 @@
-import { Card, List} from 'antd';
+import { List} from 'antd';
 import React from 'react';
 import ShowCard from './Card';
 // const electron = window.require('electron');
@@ -7,7 +7,7 @@ import ShowCard from './Card';
 
 const CardList = ({pics}) =>{ 
     return (
-        <List grid={{ gutter: 16, column: 2 }}
+        <List grid={{ gutter: 8, xs: 1, sm: 1, md: 2, lg: 2, xl: 3, xxl: 4, }}
         dataSource={pics}
         renderItem={(item,i)=>(
             <List.Item>

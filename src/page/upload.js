@@ -1,5 +1,5 @@
 import React from "react";
-import { Upload, message, Button, Icon, Modal } from 'antd';
+import { Upload, Icon, Modal, Divider} from 'antd';
 import CardList from '../component/CardList';
 import axios from 'axios';
 
@@ -10,12 +10,7 @@ class Uploads extends React.Component {
             posts:[],
             previewVisible: false,
             previewImage: '',
-            fileList: [{
-                uid: '-1',
-                name: '',
-                status: 'done',
-                url: '',
-            }],
+            fileList: [],
         }
     }
 
@@ -34,11 +29,11 @@ class Uploads extends React.Component {
     uploadImage = (file) => {
         // ipcRenderer.send('upload-image', file.path);
         // console.log(file.path);
-        console.log(file)
+        console.log(file);
         var r = new FileReader();
         r.readAsDataURL(file); //Base64
         r.onload = function(){
-            console.log(r.result)
+            console.log(r.result);
             axios({
                 url: 'http://localhost:8000/upload',
                 method: 'post',
@@ -98,7 +93,8 @@ class Uploads extends React.Component {
                 </Upload>
                 <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                     <img alt=" " style={{ width: '100%' }} src={previewImage} />
-                </Modal>   
+                </Modal>
+                <Divider />
                 <CardList pics={this.state.posts} />         
             </div>
         );

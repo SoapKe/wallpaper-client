@@ -11,11 +11,12 @@ const Download = require('../lib/download_collection');
 const { spawn } = require("child_process");
 const Store = require('electron-store');
 const store = new Store();
+const later = require('later');
 
 let mainWindow;
-
+var timer;
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 900, height: 680, webPreferences: { webSecurity: false}});
+    mainWindow = new BrowserWindow({width: 1280, height: 720, webPreferences: { webSecurity: false}});
 
     mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`);
 
@@ -69,16 +70,22 @@ app.on('activate', () => {
 
 ipcMain.on('download-image', (event, filePath) => {
     return new Promise((resolve, reject) => {
-      // const tempDir = path.join(__dirname, "../wallpaper");
-      const tempDir = store.get('download_folder')
-      const tempFileName = `temp${Date.now()}.jpg`;
-      const tempFilePath = path.join(tempDir, tempFileName);
-      const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
-      const getImageFile = request.get(filePath);
+        var tempDir;
+        if(store.get('download_folder')) {
+            tempDir = store.get('autoChanger_folder')
+        } else{
+            let pathDir = __dirname.split('/');
+            tempDir = path.join('/' + pathDir[1] + '/' + pathDir[2], 'Desktop');
+        }
+
+        const tempFileName = `temp${Date.now()}.jpg`;
+        const tempFilePath = path.join(tempDir, tempFileName);
+        const writeFileTo = fs.createWriteStream(path.join(tempDir, tempFileName));
+        const getImageFile = request.get(filePath);
   
-      getImageFile.pipe(writeFileTo);
-      getImageFile.on("error", reject);
-      getImageFile.on("complete", () => {
+        getImageFile.pipe(writeFileTo);
+        getImageFile.on("error", reject);
+        getImageFile.on("complete", () => {
         // Image has been saved to tempFilePath
         // Change desktop background using applescript
         const script = spawn("osascript", [
@@ -90,8 +97,14 @@ ipcMain.on('download-image', (event, filePath) => {
     })
   });
 
-ipcMain.on('change_period', (event,fre,msr) =>{ 
-    AutoChanger("every "+fre+" "+msr);
+ipcMain.on('change_period', (event,fre,msr) =>{
+    let s = later.parse.text("every "+fre+" "+msr);
+    later.date.localTime();
+    timer = later.setInterval(AutoChanger, s)
+});
+
+ipcMain.on('stop_autochanger', (event) =>{
+    timer.clear();
 });
 
 ipcMain.on('download_all', (event, urls) =>{
@@ -106,7 +119,7 @@ ipcMain.on('download_all', (event, urls) =>{
 });
 
 ipcMain.on('set_folder', (event, type) => {
-    const {dialog} = require('electron') 
+    const {dialog} = require('electron');
     dialog.showOpenDialog({
         properties: ['openDirectory']
     }, function (fileNames) {

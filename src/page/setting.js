@@ -1,4 +1,4 @@
-import { Select,InputNumber,Button } from 'antd';
+import { Select, InputNumber,Button, Divider} from 'antd';
 import React from "react";
 
 const Option = Select.Option;
@@ -13,12 +13,12 @@ class Setting extends React.Component {
     };
 
     handleChange1 = (value) => {
-        console.log(`selected ${value}`)
+        console.log(`selected ${value}`);
         this.setState({fre:value})
     };
 
     handleChange2 = (value) => {
-        console.log(`selected ${value}`)
+        console.log(`selected ${value}`);
         this.setState({msr:value})
             // this.setState({
             //   Username : event.target.value,
@@ -29,6 +29,10 @@ class Setting extends React.Component {
         ipcRenderer.send('change_period', this.state.fre, this.state.msr);
     };
 
+    setStop = () =>{
+        ipcRenderer.send('stop_autochanger', '');
+    };
+
     selectFolder = (type) => {
         ipcRenderer.send('set_folder', type);
     };
@@ -36,15 +40,12 @@ class Setting extends React.Component {
     render(){
         return(
             <div style={{ marginTop: 150 }}>
-
                 <div>
                     <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("download")}>Select Download Folder</Button>
-                </div>
-
-                <div>
+                    <Divider type="vertical" />
                     <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("autoChanger")}>Select Collection Folder</Button>
                 </div>
-
+                <Divider />
                 <h3> Set the frequency of wallpaper changing automatically:</h3>
                 <br/>
                 Every
@@ -56,7 +57,10 @@ class Setting extends React.Component {
                     <Option value="days">days</Option>
                     <Option value="weeks">weeks</Option>
                 </Select>
+                <Divider type="vertical" />
                 <Button type="primary"  onClick={this.setPeriod}>Set!</Button>
+                <Divider type="vertical" />
+                <Button type="danger"  onClick={this.setStop}>Stop!</Button>
             </div>
         )}
 }
