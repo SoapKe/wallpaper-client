@@ -40,13 +40,19 @@ class RegistrationForm extends React.Component {
       confirmPassword : event.target.value,
     })
   };
+
+  handleGetUsername= (event) => {
+    this.setState({
+      username : event.target.value,
+    })
+  };
  
   handleRegister = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         axios({
-          url: 'http://localhost:8000/register',
+          url: 'http://35.243.234.68:8000/register',
           method: 'post',
           data: {
             email:  this.state.Email,
@@ -155,7 +161,7 @@ class RegistrationForm extends React.Component {
               required: true, message: 'Please input your username!',
             }],
           })(
-            <Input/>
+            <Input onChange={this.handleGetUsername}/>
           )}
         </FormItem>
         <FormItem

@@ -18,7 +18,8 @@ export default class ShowCard extends React.Component{
         super(props);
         this.state={
             color1:"#000000",
-            color2:"#000000"
+            color2:"#000000",
+            search:false
         }
         //this.color = "#eb2f96";
     }
@@ -41,7 +42,7 @@ export default class ShowCard extends React.Component{
             return
         }
         axios({
-            url: 'http://localhost:8000/addLike',
+            url: 'http://35.243.234.68:8000/addLike',
             method: 'post',
             data: {
                 wid:  wid,
@@ -84,7 +85,7 @@ export default class ShowCard extends React.Component{
             return
         }
         axios({
-            url: 'http://localhost:8000/addCollect',
+            url: 'http://35.243.234.68:8000/addCollect',
             method: 'post',
             data: {
                 wid:  wid,
@@ -116,7 +117,8 @@ export default class ShowCard extends React.Component{
         if (item.hasOwnProperty("urls")){
             this.setState({
                 color1:"#ffffff",
-                color2:"#ffffff"
+                color2:"#ffffff",
+                search:true
             })
         } else if(item.hasOwnProperty("url")){
             if(item.isLiked === true){
@@ -141,16 +143,7 @@ export default class ShowCard extends React.Component{
 
     }
 
-    // download = (url) => {
-    //     const tempFileName = `temp${Date.now()}.jpg`;
-    //     const tempFilePath = path.join(tempDir, tempFileName);
-    //     const writeFileTo = fs.createWriteStream(tempFilePath);
-    //     const getImageFile = request.get(url);
-
-    //     getImageFile.pipe(writeFileTo);
-
     // theme="twoTone" twoToneColor={this.state.color} onClick={()=>{this.onChangeColor(this.state.color)}}
-
 
     render(){
         const { item } = this.props;
@@ -161,7 +154,7 @@ export default class ShowCard extends React.Component{
         var author;
         var numCollects=0;
         var wid;
-        
+
        if (item.hasOwnProperty("urls")){
             picUrl = item.urls.full;
         } else if(item.hasOwnProperty("url")){
@@ -172,11 +165,17 @@ export default class ShowCard extends React.Component{
             author = item.username;
         }
 
+        var meta;
+        if(!this.state.search){
+            meta = <Meta title={"Author:  "+author} description={numLikes+"  Likes     "+numCollects+"  Collects"}/>
+        }
+
         return (
             <div id = {"pic_"+id} name = {wid}>
                 <Card
-                    style={{ width: 300 }}
-                    cover={<img alt="example" src={picUrl} width="300" height="180" />}
+                    type="inner"
+                    style={{ width: 322}}
+                    cover={<img alt="example" src={picUrl} style={{ width: 'auto' , height: 180}} />}
                     actions={
                         [<Icon type="heart" id = {"like_"+ id} theme="twoTone" twoToneColor={this.state.color1} onClick={()=>{this.handleLike(wid)}}/>,
                             <Icon type="folder-add" id = {"collect_"+ id} theme="twoTone" twoToneColor={this.state.color2} onClick={()=>this.handleCollect(wid)}/>,
@@ -184,10 +183,7 @@ export default class ShowCard extends React.Component{
 
                         }
                 >
-                    <Meta
-                        title={"Author:  "+author}
-                        description={numLikes+"  Likes     "+numCollects+"  Collects"}
-                    />
+                {meta}
                 </Card>
 
             </div>

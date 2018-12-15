@@ -43,7 +43,7 @@ class Setting extends React.Component {
                 <div>
                     <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("download")}>Select Download Folder</Button>
                     <Divider type="vertical" />
-                    <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("autoChanger")}>Select Collection Folder</Button>
+                    <Button type="primary" icon="download" size="large" onClick={() => this.selectFolder("autoChanger")}>Change Wallpapers From Folder</Button>
                 </div>
                 <Divider />
                 <h3> Set the frequency of wallpaper changing automatically:</h3>

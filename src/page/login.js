@@ -33,7 +33,7 @@ class NormalLoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
-                    url: 'http://localhost:8000/login',
+                    url: 'http://35.243.234.68:8000/login',
                     method: 'post',
                     data: {
                         email:  this.state.Username,
@@ -73,7 +73,7 @@ class NormalLoginForm extends React.Component {
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" type="text" onChange={this.handleGetUsername}/>
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" type="text" onChange={this.handleGetUsername}/>
                         )}
                     </FormItem>
                     <FormItem>
