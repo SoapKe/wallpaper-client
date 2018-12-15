@@ -50,6 +50,7 @@ class RegistrationForm extends React.Component {
           method: 'post',
           data: {
             email:  this.state.Email,
+            username: this.state.username,
             password:  this.state.Password
           },
           transformRequest: [function (data) {
@@ -130,7 +131,7 @@ class RegistrationForm extends React.Component {
     };
 
     return (
-      <Form id="reg-form" onSubmit={this.handleRegister} style={{ width: '60%', marginLeft: '18%', marginTop: '20%', marginBottom: '20%'}}>
+      <Form id="reg-form" onSubmit={this.handleRegister} style={{ width: '40%', marginLeft: '25%',marginTop: '10%'}}>
         <FormItem
           {...formItemLayout}
           label="E-mail"
@@ -143,6 +144,18 @@ class RegistrationForm extends React.Component {
             }],
           })(
             <Input onChange={this.handleGetEmail}/>
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="Username"
+        >
+         {getFieldDecorator('username', {
+            rules: [{
+              required: true, message: 'Please input your username!',
+            }],
+          })(
+            <Input/>
           )}
         </FormItem>
         <FormItem
@@ -183,7 +196,7 @@ class RegistrationForm extends React.Component {
         </FormItem> */}
         <FormItem {...tailFormItemLayout}>
           <Button id="reg-btn" type="primary" htmlType="submit">Register</Button>
-          <NavLink to="/login"> Go back to login!</NavLink>
+          <NavLink to="/"> Go back to login!</NavLink>
         </FormItem>
         
       </Form>

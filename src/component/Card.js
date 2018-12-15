@@ -157,11 +157,10 @@ export default class ShowCard extends React.Component{
         const { id } = this.props;
         console.log("item"+item)
         var picUrl;
-        var numLikes;
-        var author = "Jianing";
-        var numCollects;
+        var numLikes=0;
+        var author;
+        var numCollects=0;
         var wid;
-        var isLiked;
         
        if (item.hasOwnProperty("urls")){
             picUrl = item.urls.full;
@@ -170,6 +169,7 @@ export default class ShowCard extends React.Component{
             numLikes = item.likes;
             numCollects = item.collects;
             wid = item._id;
+            author = item.username;
         }
 
         return (

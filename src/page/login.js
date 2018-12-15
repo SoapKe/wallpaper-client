@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox} from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Divider} from 'antd';
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
 
@@ -66,8 +66,9 @@ class NormalLoginForm extends React.Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
-                {/*<h1 style={{ text-align='center' }}>Wallpaper Workshop</h1>*/}
-                <Form id="login-form" onSubmit={this.handleSubmit} className="login-form"  style={{ width: '60%', marginLeft: '20%', marginTop: '20%', marginBottom: '20%'}}>
+
+                <Form id="login-form" onSubmit={this.handleSubmit} className="login-form"  style={{ width: '40%', marginLeft: '30%',marginTop: '10%'}}>
+                    <h1 style={{ marginLeft: '10%'}}> Welcome to Wallpaper Workshop!</h1>
                     <FormItem>
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
