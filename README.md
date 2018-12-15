@@ -1,44 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Wallpaper-Workshop
 
-## Available Scripts
+This is the course-based project composed of Tianchen Min (tm2977), Ke Xu (ax2144), Can Dong (cd3032) and Jianing Yu (jy2929).
 
-In the project directory, you can run:
+Wallpaper-Workshop is an app on PC. It contains following functions:
 
-### `npm start`
+1. Create a wallpaper community among users:
+    Users can share, collect and search for wallpapers. 
+    Users also can upvote wallpapers uploaded by other users.
 
-Runs the app in the development mode.<br>
-Open [http://35.243.234.68:3000](http://35.243.234.68:3000) to view it in the browser.
+2. Give convenient operations for users to set wallpapers: 
+    Users can hit just one button to set the wallpaper they like.
+    This app can automatically change wallpapers according to the frequency and wallpapers users set.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Get Started
+Note: If you are user, just ignore the following lines and jump to "Usage".
 
-### `npm test`
+If you are a developer and would like to revise code and build the project by yourselves, you need to follow instructions below:
+1. Install brew if you don't have it on your mac:
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+2. Install node with version 8.12.0:
+https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V8.md
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install yarn
+```
+brew install yarn
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
+As a user:
+Double click "Wallpaper-Workshop.exe" and enjoy!
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+As a developer:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+***1. Start your own server:***
+```
+cd wallpaperServer
+npm install
+npm run start
+```
 
-### `npm run eject`
+***2. Build your client***
+```
+cd wallpaper-client
+npm install
+yarn build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+***3. Start your client***
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You have two options here:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+First: start app without packaging
+```
+yarn estart
+```
+Second: start app after packing
+```
+yarn dist
+```
+Then you will find "Wallpaper-Workshop" in folder wallpaper-client/dist/mac
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+***4. Run test***
 
-## Learn More
+Run test script:
+```yarn test```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Functionality
+***1. Login***
+
+Type your email address and password and click login.
+
+***2. Register***
+
+Type your email address and password and click register.
+
+***3. Search***
+
+Type the key words of wallpapers you want to search in the textbox and click search button
+
+***4. Upvote for other users wallpapers***
+
+Click heart icon below each wallpaper, the number of likes will add one.
+
+***5. Collect the wallpapers you like***
+
+Click the collect button below each wallpaper, the paper will appear in your collection page
+
+***6. Download collected pictures by one click***
+
+Click download button on collection page
+
+***7. Upload wallpapers***
+
+Click 'upload' on the left sidebar and click the upload button and select the pictures you want to upload the the pictures will appear on home page
+
+***8. Set wallpaper by one click***
+
+Click the setting button below the wallpapers and done!
+
+***9. Automatically change wallpapers***
+
+Set frequency and wallpaper folder and done!
+
+
+
+
+
+
+
+
+
+
+
