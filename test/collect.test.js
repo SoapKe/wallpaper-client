@@ -38,7 +38,7 @@ describe('Collect test launch', function() {
         assert.ok(loginFormTwo);
 
         // fill out login form
-        await app.client.setValue('#userName', "y@qq.com");
+        await app.client.setValue('#userName', "j@qq.com");
         await app.client.setValue('#password', "111111");
         await app.client.click('#login-btn');
         await app.client.waitUntilWindowLoaded();
