@@ -50,7 +50,7 @@ describe('Like test launch', function() {
         assert.ok(layout);
     });
 
-    it('Click picture with id 1', async () => {
+    it('Click picture with id 0', async () => {
         await app.client.waitUntilWindowLoaded();
 
         const html1 = await app.client.getHTML('body');
@@ -79,7 +79,13 @@ describe('Like test launch', function() {
             i = i + 1;
         } 
 
-        assert.ok(list.indexOf(uid_pic) >= 0)
+        //cancel like on pic_0
+        await app.client.click("#home");
+        await sleep(2000);
+        await app.client.waitUntilWindowLoaded();
+        await app.client.click("#like_0");
+
+        assert.ok(list.indexOf(uid_pic) >= 0);
     });
 
 });

@@ -54,7 +54,7 @@ describe('Collect test launch', function() {
         await app.client.waitUntilWindowLoaded();
 
         const html1 = await app.client.getHTML('body');
-        var dom1 = new jsdom(html1)
+        var dom1 = new jsdom(html1);
         var uid_pic = dom1.window.document.getElementById('pic_0').getAttribute("name")
         await app.client.click("#collect_0");
         await app.client.click("#collects");
@@ -77,7 +77,13 @@ describe('Collect test launch', function() {
             i = i + 1;
         } 
 
-        assert.ok(list.indexOf(uid_pic) >= 0)
+        //cancel collect on pic_0
+        await app.client.click("#home");
+        await sleep(2000);
+        await app.client.waitUntilWindowLoaded();
+        await app.client.click("#collect_0");
+
+        assert.ok(list.indexOf(uid_pic) >= 0);
     });
 
 });

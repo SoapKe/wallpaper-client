@@ -49,7 +49,7 @@ export class IndexPage extends React.Component {
                 <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }} >
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1">
+                        <Menu.Item key="1" id="home">
                             <Icon type="home" theme="outlined" />
                             <span className="nav-text">Home</span>
                             <NavLink to="/index"/>
