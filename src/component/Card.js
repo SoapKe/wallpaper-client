@@ -67,6 +67,7 @@ export default class ShowCard extends React.Component{
         })
             .then(response => {
                 console.log("success");
+                
                 // this.props.onDeleteHandler(id)
             })
             .catch(error => {
