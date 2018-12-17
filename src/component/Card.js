@@ -161,8 +161,50 @@ export default class ShowCard extends React.Component{
 
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.item !== this.props.item){
+            const { item } = this.props;
+            if (item.hasOwnProperty("urls")){
+                this.setState({
+                    picUrl:item.urls.full,
+                    color1:"#ffffff",
+                    color2:"#ffffff",
+                    search:true
+                })
+            } else if(item.hasOwnProperty("url")){
+                this.setState({
+                    picUrl : item.url,
+                    numLikes : item.likes,
+                    numCollects : item.collects,
+                    wid : item._id,
+                    author : item.username
+                })
+
+                if(item.isLiked === true){
+                    this.setState({
+                        color1:"#eb2f96"
+                    })
+                } else{
+                    this.setState({
+                        color1:"#000000"
+                    })
+                }
+                if(item.isCollected === true){
+                    this.setState({
+                        color2:"#eb2f96"
+                    })
+                } else{
+                    this.setState({
+                        color2:"#000000"
+                    })
+                }
+            }
+        }
+    }
+
     render(){
         const { id } = this.props;
+        const { item } = this.props;
 
         var meta;
         if(!this.state.search){

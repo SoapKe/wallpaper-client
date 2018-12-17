@@ -12,10 +12,11 @@ class SearchResult extends React.Component {
         super(props);
         this.state={
             posts:[]
-        }
+        };
     }
 
     componentDidMount(){
+        // keyword = this.props.match.params.keyword;
         var unsplash;
         unsplash = new Unsplash({
             //TODO: Put it in environment vars.
@@ -25,7 +26,7 @@ class SearchResult extends React.Component {
         });
 
         console.log(this.props);
-        unsplash.search.photos(this.props.match.params.keyword, 1, 100)
+        unsplash.search.photos(this.props.match.params.keyword, 1, 20)
             .catch(err => {
                 console.log(err);
             })
@@ -41,30 +42,32 @@ class SearchResult extends React.Component {
         console.log(this.state.posts);
     }
 
-    componentDidUpdate(){
-        var unsplash;
-        unsplash = new Unsplash({
-            //TODO: Put it in environment vars.
-            applicationId: "1eccca646ffdcffd33a902794c5086f1701713c20b2eb943a458880100bb677d",
-            secret: "891c91a86a0842e6648925e8048cc35ede9986969db514e4e0ae6d8d811f1130",
-            callbackUrl: "http://35.243.234.68:8000/auth"
-        });
-
-        console.log(this.props);
-        unsplash.search.photos(this.props.match.params.keyword, 1, 100)
-            .catch(err => {
-                console.log(err);
-            })
-            .then(toJson)
-            .then(json => {
-                this.setState({
-                    posts: json.results
-                });
-
-                console.log(json);
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.match.params.keyword !== this.props.match.params.keyword){
+            var unsplash;
+            unsplash = new Unsplash({
+                //TODO: Put it in environment vars.
+                applicationId: "1eccca646ffdcffd33a902794c5086f1701713c20b2eb943a458880100bb677d",
+                secret: "891c91a86a0842e6648925e8048cc35ede9986969db514e4e0ae6d8d811f1130",
+                callbackUrl: "http://35.243.234.68:8000/auth"
             });
 
-        console.log(this.state.posts);
+            console.log(this.props);
+            unsplash.search.photos(this.props.match.params.keyword, 1, 20)
+                .catch(err => {
+                    console.log(err);
+                })
+                .then(toJson)
+                .then(json => {
+                    this.setState({
+                        posts: json.results
+                    });
+                    console.log(json);
+                    this.forceUpdate();
+                });
+
+            console.log(this.state.posts);
+        }
     }
     render(){
         return (
